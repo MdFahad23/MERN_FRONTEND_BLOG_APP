@@ -1,7 +1,7 @@
 import React from "react";
 import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 
-import { images } from "../../constants";
+import { images, stables } from "../../constants";
 import CommentForm from "./CommentForm";
 
 const Comment = ({
@@ -31,7 +31,11 @@ const Comment = ({
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
       <img
-        src={images.PostProfileImage}
+        src={
+          comment?.user?.avatar
+            ? stables.UPLOAD_FOLDER_BASE_URL + comment.user.avatar
+            : images.userImage
+        }
         alt="user profile"
         className="w-9 h-9 object-cover rounded-full"
       />
@@ -52,7 +56,6 @@ const Comment = ({
             {comment.desc}
           </p>
         )}
-        {/* Edit Comment */}
         {isEditing && (
           <CommentForm
             btnLabel="Update"
@@ -61,7 +64,6 @@ const Comment = ({
             initialText={comment.desc}
           />
         )}
-        {/* Comment action Button */}
         <div className="flex items-center gap-x-3 text-dark-light font-roboto text-sm mt-3 mb-3">
           {isUserLoggined && (
             <button
@@ -97,7 +99,7 @@ const Comment = ({
         </div>
         {isReplying && (
           <CommentForm
-            btnLabel="Replay"
+            btnLabel="Reply"
             formSubmitHanlder={(value) =>
               addComment(value, repliedCommentId, replyOnUserId)
             }

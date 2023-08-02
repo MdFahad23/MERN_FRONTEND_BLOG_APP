@@ -1,11 +1,11 @@
 import React from "react";
 
 import MainLayout from "../../components/MainLayout";
-import Hero from "./container/Hero";
 import Articles from "./container/Articles";
-import CTA from "./container/CAT";
+import Hero from "./container/Hero";
+import CTA from "./container/CTA";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <MainLayout>
       <Hero />
@@ -15,4 +15,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default HomePage;
